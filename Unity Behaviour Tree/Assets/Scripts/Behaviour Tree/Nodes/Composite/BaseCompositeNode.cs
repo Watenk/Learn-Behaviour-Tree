@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseCompositeNode : BaseNode, IMultipleTickables<BaseNode>
+public abstract class BaseCompositeNode : BaseNode, IMultipleTickables<BaseNode>, IInitiable
 {
     public List<BaseNode> TickableList { get; set; } = new List<BaseNode>();
     public int TickableIndex { get; set; } = 0;
 
-    public override BTState Tick()
+    public void AddNode(BaseNode _node)
     {
-        if (TickableList.Count == 0) { Debug.LogError("Composide Node has 0 Children"); }
-
-        return TickCurrentTickable();
+        _node.Blackboard = Blackboard;
+        TickableList.Add(_node);
     }
 
-    public abstract BTState TickCurrentTickable();
+    public abstract void Init();
 }

@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Patrols in set area
-public class PatrolBranch : BaseBranch
+public class Patrol : LoopCompositeNode
 {
     private WalkToPosNode walkToPos = new WalkToPosNode();
     private Vector2 Pos1;
     private Vector2 Pos2;
 
-    public override void Initialize()
+    public override void Init()
     {
-        AddNode(walkToPos);
         walkToPos.SetTarget(new Vector2(Random.Range(Pos1.x, Pos2.x), Random.Range(Pos1.y, Pos2.y)));
-
+        AddNode(walkToPos);
     }
 
     public override BTState Tick()
@@ -25,7 +23,7 @@ public class PatrolBranch : BaseBranch
             walkToPos.SetTarget(new Vector2(Random.Range(Pos1.x, Pos2.x), Random.Range(Pos1.y, Pos2.y)));
         }
 
-        return state;
+        return BTState.running;
     }
 
     public void SetArea(Vector2 _pos1, Vector2 _pos2)

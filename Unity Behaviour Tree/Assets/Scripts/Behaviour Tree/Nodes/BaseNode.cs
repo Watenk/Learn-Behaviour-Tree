@@ -6,10 +6,10 @@ public abstract class BaseNode : ITickable, IBlackboardable
 {
     public Blackboard Blackboard { get; set; }
 
-    public abstract BTState Tick();
-
-    public void AssignBlackboard(Blackboard _blackboard)
+    public virtual BTState Tick()
     {
-        Blackboard = _blackboard;
+        Blackboard.Set<string>("CurrentNode", this.ToString());
+
+        return BTState.running;
     }
 }

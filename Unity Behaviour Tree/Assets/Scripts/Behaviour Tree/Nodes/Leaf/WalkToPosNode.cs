@@ -9,6 +9,8 @@ public class WalkToPosNode : BaseNode
 
     public override BTState Tick()
     {
+        base.Tick();
+
         //Blackboard
         GameObject body = Blackboard.Get<GameObject>("Body");
         Rigidbody2D rb = Blackboard.Get<Rigidbody2D>("RB2D");

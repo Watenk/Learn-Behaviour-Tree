@@ -39,16 +39,19 @@ public class BT : ITickable, IMultipleTickables<ITickable>, IBlackboardable
         return BTState.succeeded;
     }
 
-    public void Add(BaseBranch _newBranch)
+    public void Add(ITickable _newTickable)
     {
-        _newBranch.AssignBlackboard(Blackboard);
-        _newBranch.Initialize();
-        TickableList.Add(_newBranch);
-    }
+        if (_newTickable is IBlackboardable)
+        {
+            IBlackboardable bb = _newTickable as IBlackboardable;
+            bb.Blackboard = Blackboard;
+        }
+        if (_newTickable is IInitiable)
+        {
+            IInitiable bb = _newTickable as IInitiable;
+            bb.Init();
+        }
 
-    public void Add(BaseNode _newNode)
-    {
-        _newNode.AssignBlackboard(Blackboard);
-        TickableList.Add(_newNode);
+        TickableList.Add(_newTickable);
     }
 }

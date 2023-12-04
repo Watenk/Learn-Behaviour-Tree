@@ -6,6 +6,4 @@ public interface IMultipleTickables<T>
 {
     List<T> TickableList { get; set; }
     int TickableIndex { get; set; }
-
-    BTState TickCurrentTickable();
 }

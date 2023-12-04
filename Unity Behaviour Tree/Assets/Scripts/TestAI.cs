@@ -15,7 +15,7 @@ public class TestAI : MonoBehaviour
         InitBlackboard();
 
         //Behaviour
-        PatrolBranch patrol = new PatrolBranch();
+        Patrol patrol = new Patrol();
         patrol.SetArea(new Vector2(-20, 20), new Vector2(20, -20));
         bt.Add(patrol);
     }
