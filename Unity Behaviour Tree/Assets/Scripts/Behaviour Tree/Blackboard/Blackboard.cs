@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Stores Data of any type
+
+// Use AddType to add a dictionary of that type
+// Use Add To add a key to that dictionary
+// Use Get and Set to modify the data in the key
 public class Blackboard 
 {
     private Dictionary<Type, object> data = new Dictionary<Type, object>();

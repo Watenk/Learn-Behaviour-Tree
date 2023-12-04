@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkToPos : BTNode
+// Moves the player towards a target using RB2D
+public class WalkToPosNode : BaseNode
 {
+    private Vector2 target;
+
     public override BTState Tick()
     {
         //Blackboard
-        GameObject body = blackboard.Get<GameObject>("Body");
-        Rigidbody2D rb = blackboard.Get<Rigidbody2D>("RB2D");
-        float speed = blackboard.Get<float>("Speed");
-        Vector2 target = blackboard.Get<Vector2>("WalkToPosTarget");
+        GameObject body = Blackboard.Get<GameObject>("Body");
+        Rigidbody2D rb = Blackboard.Get<Rigidbody2D>("RB2D");
+        float speed = Blackboard.Get<float>("Speed");
 
         Vector2 bodyVector2 = new Vector2(body.transform.position.x, body.transform.position.y);
 
-        if (Vector2.Distance(bodyVector2, target) < 0.5f)
+        if (Vector2.Distance(bodyVector2, target) < 0.1f)
         {
             return BTState.succeeded;
         }
@@ -24,5 +26,10 @@ public class WalkToPos : BTNode
         rb.MovePosition(body.transform.position - new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime);
 
         return BTState.running;
+    }
+
+    public void SetTarget(Vector2 _target)
+    {
+        target = _target;
     }
 }

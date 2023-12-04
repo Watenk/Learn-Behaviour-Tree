@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Is used to store data in the Blackboard
 public class BlackboardData<T>
 {
     private Dictionary<string, T> dictionary = new Dictionary<string, T>();
