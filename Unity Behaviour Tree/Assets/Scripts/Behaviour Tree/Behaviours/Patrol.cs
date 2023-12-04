@@ -5,6 +5,8 @@ using UnityEngine;
 public class Patrol : LoopCompositeNode
 {
     private WalkToPosNode walkToPos = new WalkToPosNode();
+    private EmitParticleNode emitParticle = new EmitParticleNode();
+    private WaitNode wait = new WaitNode();
     private Vector2 Pos1;
     private Vector2 Pos2;
 
@@ -12,6 +14,9 @@ public class Patrol : LoopCompositeNode
     {
         walkToPos.SetTarget(new Vector2(Random.Range(Pos1.x, Pos2.x), Random.Range(Pos1.y, Pos2.y)));
         AddNode(walkToPos);
+        AddNode(emitParticle);
+        wait.SetWaitTime(100);
+        AddNode(wait);
     }
 
     public override BTState Tick()

@@ -7,6 +7,7 @@ public class TestAI : MonoBehaviour
 {
     public Text CurrentBranch;
     public Text CurrentNode;
+    public GameObject ParticlePrefab;
 
     private BT bt = new BT();
 
@@ -22,9 +23,14 @@ public class TestAI : MonoBehaviour
 
     public void FixedUpdate()
     {
-        CurrentBranch.text = bt.Blackboard.Get<string>("CurrentBranch") + " " + bt.Blackboard.Get<int>("CurrentBranchIndex");
-        CurrentNode.text = bt.Blackboard.Get<string>("CurrentNode") + " " + bt.Blackboard.Get<int>("CurrentNodeIndex");
+        CurrentBranch.text = bt.Blackboard.Get<string>("CurrentBranch");
+        CurrentNode.text = bt.Blackboard.Get<string>("CurrentNode");
         bt.Tick();
+    }
+
+    public void InstantiateObject(GameObject _prefab, Vector2 _pos)
+    {
+        Instantiate(_prefab, new Vector3(_pos.x, _pos.y, 0), Quaternion.identity);
     }
 
     private void InitBlackboard()
@@ -32,16 +38,16 @@ public class TestAI : MonoBehaviour
         bt.Blackboard.AddType<Rigidbody2D>();
         bt.Blackboard.AddType<GameObject>();
         bt.Blackboard.AddType<Vector2>();
+        bt.Blackboard.AddType<TestAI>();
         bt.Blackboard.AddType<string>();
         bt.Blackboard.AddType<float>();
-        bt.Blackboard.AddType<int>();
 
         bt.Blackboard.Add<Rigidbody2D>("RB2D", GetComponent<Rigidbody2D>());
         bt.Blackboard.Add<GameObject>("Body", gameObject);
+        bt.Blackboard.Add<GameObject>("Particle", ParticlePrefab);
+        bt.Blackboard.Add<TestAI>("TestAI", this);
         bt.Blackboard.Add<string>("CurrentBranch");
         bt.Blackboard.Add<string>("CurrentNode");
         bt.Blackboard.Add<float>("Speed", 10);
-        bt.Blackboard.Add<int>("CurrentBranchIndex");
-        bt.Blackboard.Add<int>("CurrentNodeIndex");
     }
 }

@@ -13,11 +13,6 @@ public class BT : ITickable, IMultipleTickables<ITickable>, IBlackboardable
     {
         if (TickableList.Count == 0) { Debug.LogError("Behaviour Tree Has 0 Branches"); }
 
-        return TickCurrentTickable();
-    }
-
-    public BTState TickCurrentTickable()
-    {
         BTState state = TickableList[TickableIndex].Tick();
 
         if (state == BTState.succeeded)
@@ -29,12 +24,10 @@ public class BT : ITickable, IMultipleTickables<ITickable>, IBlackboardable
             else
             {
                 TickableIndex = 0;
-                //Debug.Log("Traversed Entire Tree");
             }
         }
 
         Blackboard.Set<string>("CurrentBranch", TickableList[TickableIndex].ToString());
-        Blackboard.Set<int>("CurrentBranchIndex", TickableIndex);
 
         return BTState.succeeded;
     }
