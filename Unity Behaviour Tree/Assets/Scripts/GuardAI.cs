@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBlackboardable
+public class GuardAI : MonoBehaviour
 {
-    Blackboard Blackboard { get; }
+    
 }

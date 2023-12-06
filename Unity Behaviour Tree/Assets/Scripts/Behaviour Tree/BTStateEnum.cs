@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBlackboardable
+public enum BTState
 {
-    Blackboard Blackboard { get; }
+    failed,
+    succeeded,
+    running
 }
