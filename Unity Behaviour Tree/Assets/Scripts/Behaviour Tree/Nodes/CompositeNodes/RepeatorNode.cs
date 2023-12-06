@@ -9,7 +9,12 @@ public class RepeatorNode : CompositeNode
     public override BTState Tick()
     {
         BTState state = SequenceTick();
-        SequenceAdvance();
+
+        if (state == BTState.succeeded)
+        {
+            SequenceAdvance();
+        }
+
         return state;   
     }
 }

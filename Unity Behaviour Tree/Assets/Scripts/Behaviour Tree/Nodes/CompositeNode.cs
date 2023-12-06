@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Has a sequence and executes tick
 
-public abstract class CompositeNode : MonoBehaviour, ITickable, ISequenceable, IBlackboardable
+public abstract class CompositeNode : ITickable, ISequenceable, IBlackboardable
 {
     public List<ITickable> Tickables { get; private set; } = new List<ITickable>();
     public int TickableIndex { get; private set; } = 0;

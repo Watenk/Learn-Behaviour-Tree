@@ -4,7 +4,7 @@ using UnityEngine;
 
 //  Has a child and executes tick
 
-public abstract class DecoratorNode : MonoBehaviour, ITickable, IBlackboardable
+public abstract class DecoratorNode : ITickable, IBlackboardable
 {
     protected ITickable child;
     public Blackboard Blackboard { get; protected set; }
@@ -15,6 +15,7 @@ public abstract class DecoratorNode : MonoBehaviour, ITickable, IBlackboardable
         Blackboard = blackboard;
     }
 
-
     public abstract BTState Tick();
+
+    public ITickable GetChild() { return child; }
 }

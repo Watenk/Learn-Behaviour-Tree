@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Just executes tick
 
-public abstract class LeafNode : MonoBehaviour, ITickable, IBlackboardable
+public abstract class LeafNode : ITickable, IBlackboardable
 {
     public Blackboard Blackboard { get; private set; }
 
@@ -12,5 +12,6 @@ public abstract class LeafNode : MonoBehaviour, ITickable, IBlackboardable
     {
         Blackboard = blackboard;
     }
+
     public abstract BTState Tick();
 }
