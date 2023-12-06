@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3790930817940872913}
   - component: {fileID: 3636371970761166365}
   m_Layer: 0
-  m_Name: TestAI
+  m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
