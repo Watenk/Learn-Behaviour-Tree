@@ -9,6 +9,8 @@ public class AIBlackboard : Blackboard
         // Types
         AddType<Rigidbody2D>();
         AddType<GameObject>();
+        AddType<ITickable>();
+        AddType<IWeapon>();
         AddType<Vector2>();
         AddType<float>();
         AddType<bool>();
@@ -18,10 +20,14 @@ public class AIBlackboard : Blackboard
         Add<GameObject>("Body");
 
         // Values
+        Add<ITickable>("CurrentTickable");
+        Add<IWeapon>("EquipedWeapon", null);
+        Add<IWeapon>("PendingWeapon", null);
         Add<Vector2>("Target");
         Add<Vector2>("PatrolPos1");
         Add<Vector2>("PatrolPos2");
         Add<float>("Speed");
+        Add<float>("DistanceToPlayer");
         Add<bool>("TargetReached", false);
     }
 }

@@ -6,5 +6,7 @@ public enum BTState
 {
     failed,
     succeeded,
-    running
+    running,
+    dontReturnThis,
+    tickNext
 }

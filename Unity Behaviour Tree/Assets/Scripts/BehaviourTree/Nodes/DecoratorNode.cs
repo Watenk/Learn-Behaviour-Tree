@@ -9,13 +9,15 @@ public abstract class DecoratorNode : ITickable, IBlackboardable
     protected ITickable child;
     public Blackboard Blackboard { get; protected set; }
 
-    public DecoratorNode(ITickable child, Blackboard blackboard)
+    public DecoratorNode(Blackboard blackboard, ITickable child)
     {
-        this.child = child;
         Blackboard = blackboard;
+        this.child = child;
     }
 
-    public abstract BTState Tick();
-
-    public ITickable GetChild() { return child; }
+    public virtual BTState Tick()
+    {
+        Blackboard.Set<ITickable>("CurrentTickable", this);
+        return BTState.dontReturnThis;
+    }
 }

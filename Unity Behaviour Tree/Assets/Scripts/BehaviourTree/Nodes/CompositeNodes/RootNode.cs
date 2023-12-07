@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepeatorNode : CompositeNode
+// Loops the sequence
+
+public class RootNode : CompositeNode
 {
-    public RepeatorNode(List<ITickable> tickables, Blackboard blackboard) : base(tickables, blackboard) { }
+    public RootNode(List<ITickable> tickables, Blackboard blackboard) : base(tickables, blackboard) { }
 
     public override BTState Tick()
     {

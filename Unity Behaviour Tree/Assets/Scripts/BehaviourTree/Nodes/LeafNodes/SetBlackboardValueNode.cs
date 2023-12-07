@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetBlackboardValueNode<T> : DecoratorNode
+public class SetBlackboardValueNode<T> : LeafNode
 {
     private string name;
     protected T value;
 
-    public SetBlackboardValueNode(ITickable child, Blackboard blackboard, string name, T value) : base(child, blackboard) 
+    public SetBlackboardValueNode(Blackboard blackboard, string name, T value) : base(blackboard) 
     {
         this.name = name;
         this.value = value;
@@ -16,10 +16,12 @@ public class SetBlackboardValueNode<T> : DecoratorNode
 
     public override BTState Tick()
     {
+        base.Tick();
+
         UpdateValue();
         Blackboard.Set<T>(name, value);
 
-        return child.Tick();
+        return BTState.tickNext;
     }
 
     public virtual void UpdateValue() { }

@@ -17,6 +17,12 @@ public class SequenceNode : CompositeNode
             SequenceAdvance();
         }
 
+        if (state == BTState.tickNext)
+        {
+            SequenceAdvance();
+            Tick();
+        }
+
         if (state == BTState.failed)
         {
             return BTState.failed;

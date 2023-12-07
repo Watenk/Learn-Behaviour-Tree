@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetPatrolTargetNode : SetBlackboardValueNode<Vector2>
+public class SetRandomTargetNode : SetBlackboardValueNode<Vector2>
 {
-    public SetPatrolTargetNode(ITickable child, Blackboard blackboard, string name, Vector2 value) : base(child, blackboard, name, value)
-    {
-    }
+    public SetRandomTargetNode(Blackboard blackboard) : base(blackboard, "Target", Vector2.zero) { }
 
     public override void UpdateValue()
     {

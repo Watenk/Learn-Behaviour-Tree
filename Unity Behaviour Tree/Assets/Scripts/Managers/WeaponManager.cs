@@ -44,10 +44,11 @@ public class WeaponManager : MonoBehaviour
         unequippedWeapons.Add(weapon);
     }
 
-    public void EquipWeapon(IWeapon weapon)
+    public IWeapon EquipWeapon(IWeapon weapon)
     {
         pendingWeapons.Remove(weapon);
         equippedWeapons.Add(weapon);
+        return weapon;
     }
 
     public void AddWeapon(IWeapon newWeapon)

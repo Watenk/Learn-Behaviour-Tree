@@ -13,5 +13,9 @@ public abstract class LeafNode : ITickable, IBlackboardable
         Blackboard = blackboard;
     }
 
-    public abstract BTState Tick();
+    public virtual BTState Tick()
+    {
+        Blackboard.Set<ITickable>("CurrentTickable", this);
+        return BTState.dontReturnThis;
+    }
 }

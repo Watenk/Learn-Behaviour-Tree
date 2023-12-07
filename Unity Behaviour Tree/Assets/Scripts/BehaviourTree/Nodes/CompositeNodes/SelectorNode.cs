@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SelectorNode : CompositeNode
 {
-    public SelectorNode(List<ITickable> tickables, Blackboard blackboard) : base(tickables, blackboard) { }
+    public SelectorNode(Blackboard blackboard, List<ITickable> tickables) : base(tickables, blackboard) { }
 
     public override BTState Tick()
     {
@@ -15,6 +15,12 @@ public class SelectorNode : CompositeNode
         if (state == BTState.succeeded)
         {
             return BTState.succeeded;
+        }
+
+        if (state == BTState.tickNext)
+        {
+            SequenceAdvance();
+            Tick();
         }
 
         if (state == BTState.failed)

@@ -9,6 +9,5 @@ public interface ISequenceable
 
     BTState SequenceTick();
     void SequenceAdvance();
-    ITickable SequenceGetCurrent();
     void SequenceAdd(ITickable tickable);
 }

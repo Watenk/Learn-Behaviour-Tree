@@ -14,6 +14,8 @@ public class WaitNode : LeafNode
 
     public override BTState Tick()
     {
+        base.Tick();
+
         timer += Time.deltaTime;
 
         if (timer >= lenght)

@@ -15,6 +15,8 @@ public class MoveToPosNode : LeafNode
 
     public override BTState Tick()
     {
+        base.Tick();
+
         Vector2 target = Blackboard.Get<Vector2>("Target");
         float speed = Blackboard.Get<float>("Speed");
 
