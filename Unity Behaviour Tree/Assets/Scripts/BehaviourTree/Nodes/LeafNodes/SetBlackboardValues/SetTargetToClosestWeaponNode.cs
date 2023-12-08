@@ -13,11 +13,15 @@ public class SetTargetToClosestWeaponNode : SetBlackboardValueNode<Vector2>
 
     public override void UpdateValue()
     {
+        Blackboard.Set<bool>("Attacking", true);
+
         if (Blackboard.Get<IWeapon>("PendingWeapon") == null)
         {
             IWeapon pendingWeapon = WeaponManager.Instance.GetClosestUnquippedWeapon(body.transform.position);
             Blackboard.Set<IWeapon>("PendingWeapon", pendingWeapon);
             value = pendingWeapon.GetPos();
         }
+
+        value = Blackboard.Get<IWeapon>("PendingWeapon").GetPos();
     }
 }

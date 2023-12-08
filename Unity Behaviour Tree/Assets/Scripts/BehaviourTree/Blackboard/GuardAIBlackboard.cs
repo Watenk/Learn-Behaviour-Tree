@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIBlackboard : Blackboard
+public class GuardAIBlackboard : Blackboard
 {
-    public AIBlackboard()
+    public GuardAIBlackboard()
     {
         // Types
         AddType<Rigidbody2D>();
@@ -27,7 +27,12 @@ public class AIBlackboard : Blackboard
         Add<Vector2>("PatrolPos1");
         Add<Vector2>("PatrolPos2");
         Add<float>("Speed");
+        Add<float>("DetectDistance");
+        Add<float>("AttackDistance");
+        Add<float>("PatrolWaitAmount");
+        Add<float>("AttackCooldown");
         Add<float>("DistanceToPlayer");
         Add<bool>("TargetReached", false);
+        Add<bool>("Attacking", false);
     }
 }

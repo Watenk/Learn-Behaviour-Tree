@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knive : MonoBehaviour, IWeapon
 {
-    public bool IsEquipped { get; set; } = false;
+    public GameObject wielder { get; private set; } = null;
 
     public void Start()
     {
@@ -14,5 +14,11 @@ public class Knive : MonoBehaviour, IWeapon
     public Vector2 GetPos()
     {
         return gameObject.transform.position;
+    }
+
+    public void SetWielder(GameObject _wielder)
+    {
+        wielder = _wielder;
+        transform.SetParent(_wielder.transform);
     }
 }

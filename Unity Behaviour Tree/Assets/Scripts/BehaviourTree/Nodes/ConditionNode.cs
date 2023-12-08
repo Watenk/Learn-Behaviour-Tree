@@ -9,8 +9,8 @@ public class ConditionNode<T> : ITickable, IBlackboardable
 {
     public Blackboard Blackboard { get; protected set; }
 
-    private SingleSequenceNode child1;
-    private SingleSequenceNode child2;
+    private RepeatingSequenceNode child1;
+    private RepeatingSequenceNode child2;
     private Func<T, bool> conditionFunc;
     private string blackboardVar;
 
@@ -19,8 +19,8 @@ public class ConditionNode<T> : ITickable, IBlackboardable
         Blackboard = blackboard;
         this.blackboardVar = blackboardVar;
         conditionFunc = func;
-        child1 = new SingleSequenceNode(blackboard, child1Tickables);
-        child2 = new SingleSequenceNode(blackboard, child2Tickables);
+        child1 = new RepeatingSequenceNode(blackboard, child1Tickables);
+        child2 = new RepeatingSequenceNode(blackboard, child2Tickables);
     }
 
     public BTState Tick()

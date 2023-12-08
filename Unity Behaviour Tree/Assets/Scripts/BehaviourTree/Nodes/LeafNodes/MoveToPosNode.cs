@@ -24,7 +24,7 @@ public class MoveToPosNode : LeafNode
         dir.Normalize();
         rb.MovePosition(body.transform.position - new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime);
 
-        if (Vector2.Distance(body.transform.position, target) < 0.1)
+        if (Vector2.Distance(body.transform.position, target) < 0.5)
         {
             Blackboard.Set<bool>("TargetReached", true);
             return BTState.succeeded;

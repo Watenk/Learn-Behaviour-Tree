@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SequenceNode : CompositeNode
 {
-    public SequenceNode(List<ITickable> tickables, Blackboard blackboard) : base(tickables, blackboard) { }
+    public SequenceNode(Blackboard blackboard, List<ITickable> tickables) : base(tickables, blackboard) { }
 
     public override BTState Tick()
     {

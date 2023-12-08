@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    bool IsEquipped { get; set; }
+    GameObject wielder { get; }
 
     Vector2 GetPos();
+    void SetWielder(GameObject wielder);
 }

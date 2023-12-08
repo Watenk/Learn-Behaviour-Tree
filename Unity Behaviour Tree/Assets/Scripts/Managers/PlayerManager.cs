@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, IDamagable
 {
     public static PlayerManager Instance { get; private set; }
 
-    public float speed;
+    public int Health { get; private set; } = 5;
+    public int MaxHealth { get; private set; } = 5;
+    public float Speed;
+    public bool IsAttacked = false;
 
     private Rigidbody2D rb;
 
@@ -26,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
-        rb.AddForce(dir * speed * Time.deltaTime, ForceMode2D.Impulse);
+        rb.AddForce(dir * Speed * Time.deltaTime, ForceMode2D.Impulse);
     }
 
     private void OnW()
@@ -47,5 +50,22 @@ public class PlayerManager : MonoBehaviour
     private void OnD()
     {
         Move(Vector2.right);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (Health - amount > 0)
+        {
+            Health -= amount;
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player Died");
     }
 }

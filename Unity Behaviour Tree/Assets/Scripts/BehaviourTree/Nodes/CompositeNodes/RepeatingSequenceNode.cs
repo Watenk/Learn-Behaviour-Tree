@@ -4,9 +4,9 @@ using UnityEngine;
 
 // Runs all nodes once
 
-public class SingleSequenceNode : CompositeNode
+public class RepeatingSequenceNode : CompositeNode
 {
-    public SingleSequenceNode(Blackboard blackboard, List<ITickable> tickables) : base(tickables, blackboard) { }
+    public RepeatingSequenceNode(Blackboard blackboard, List<ITickable> tickables) : base(tickables, blackboard) { }
 
     public override BTState Tick()
     {
