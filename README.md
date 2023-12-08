@@ -4,7 +4,7 @@
 **W, A, S, D** - Move Player 
 
 ## Video
-[![Video](https://img.youtube.com/vi/ZT5VuxG0Kj4/0.jpg)](https://www.youtube.com/watch?v=ZT5VuxG0Kj4)  
+[![Video](https://img.youtube.com/vi/HTuWaDKuoeY/0.jpg)](https://www.youtube.com/watch?v=HTuWaDKuoeY)  
 
 ## UML
 <img src="./Documentation/BehaviourTree.svg">  
