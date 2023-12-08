@@ -11,17 +11,16 @@ public class Sequences
     // Level 1 Sequences (The main sequences)
     public List<ITickable> AttackAndPatrol(Blackboard bb)
     {
-        Func<float, bool> agentAttackCondition = (currentDistance) => 
-            currentDistance < bb.Get<float>("DetectDistance") || bb.Get<bool>("Attacking");
+        Func<bool, bool> isStunned = (stunned) => stunned;
 
         List<ITickable> sequence = new List<ITickable>
         {
             new RepeatingSequenceNode(bb, new List<ITickable>
             {
                 new SetDistanceToPlayerNode(bb),
-                new ConditionNode<float>(bb, "DistanceToPlayer", agentAttackCondition,
-                    IsWeaponEquipped(bb),
-                    PatrolSequence(bb)
+                new ConditionNode<bool>(bb, "Stunned", isStunned,
+                    BeStunned(bb),
+                    CheckDistanceToPlayer(bb)
                 )
             })
         };
@@ -118,6 +117,22 @@ public class Sequences
                     MoveToPlayer(bb)
                 )
             }),
+        };
+
+        return sequence;
+    }
+
+    public List<ITickable> CheckDistanceToPlayer(Blackboard bb)
+    {
+        Func<float, bool> agentAttackCondition = (currentDistance) =>
+            currentDistance < bb.Get<float>("DetectDistance") || bb.Get<bool>("Attacking");
+
+        List<ITickable> sequence = new List<ITickable>
+        {
+            new ConditionNode<float>(bb, "DistanceToPlayer", agentAttackCondition,
+                IsWeaponEquipped(bb),
+                PatrolSequence(bb)
+            )
         };
 
         return sequence;
@@ -228,6 +243,16 @@ public class Sequences
         {
             new WaitNode(bb, bb.Get<float>("AttackCooldown")),
             new ThrowBombToGuardNode(bb)
+        };
+
+        return sequence;
+    }
+
+    public List<ITickable> BeStunned(Blackboard bb)
+    {
+        List<ITickable> sequence = new List<ITickable>
+        {
+            new StunnedNode(bb, 3)
         };
 
         return sequence;

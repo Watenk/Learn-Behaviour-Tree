@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GuardAI : MonoBehaviour
+public class GuardAI : MonoBehaviour, IDamagable
 {
     public Text CurrentNodeText;
+    public int Health { get; private set; } = 3;
+    public int MaxHealth { get; private set; } = 3;
 
-    private GuardAIBlackboard bb;
+    public GuardAIBlackboard bb;
     private BehaviourTree bt;
+
 
     public void Start()
     {
@@ -39,5 +42,21 @@ public class GuardAI : MonoBehaviour
 
         // Debug
         CurrentNodeText.text = bt.Blackboard.Get<ITickable>("CurrentTickable").ToString();
+    }
+
+    public void TakeDamage(int amount)
+    {
+        Health -= amount;
+
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        GuardManager.Instance.RemoveGuard(this);
+        Destroy(gameObject);
     }
 }

@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackParticle: {fileID: 7468781941054673502, guid: 3ffa4ac59dd21d44eb70d86f1880a593, type: 3}
+  ExplodeParticle: {fileID: 7468781941054673502, guid: 584f336c3799abb479e6004fb6ba371c, type: 3}
 --- !u!114 &899562205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b041eefe6909cf942b5a61a3b15c6046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardAmount: 1
 --- !u!1001 &930662760
 PrefabInstance:
   m_ObjectHideFlags: 0

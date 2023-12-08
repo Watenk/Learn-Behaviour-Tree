@@ -7,6 +7,7 @@ public class ParticleManager : MonoBehaviour
     public static ParticleManager Instance { get; private set; }
 
     public GameObject AttackParticle;
+    public GameObject ExplodeParticle;
 
     public void Awake()
     {
@@ -16,5 +17,10 @@ public class ParticleManager : MonoBehaviour
     public void PlayAttackParticle(Vector2 pos)
     {
         Instantiate(AttackParticle, new Vector3(pos.x, pos.y, -5), Quaternion.identity);
+    }
+
+    public void PlayExplodeParticle(Vector2 pos)
+    {
+        Instantiate(ExplodeParticle, new Vector3(pos.x, pos.y, -5), Quaternion.identity);
     }
 }

@@ -34,5 +34,6 @@ public class GuardAIBlackboard : Blackboard
         Add<float>("DistanceToPlayer");
         Add<bool>("TargetReached", false);
         Add<bool>("Attacking", false);
+        Add<bool>("Stunned", false);
     }
 }

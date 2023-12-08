@@ -18,8 +18,24 @@ public class GuardManager : MonoBehaviour
         guards.Add(newGuard);
     }
 
+    public void RemoveGuard(GuardAI newGuard)
+    {
+        guards.Remove(newGuard);
+    }
+
     public Vector2 GetGuardPos()
     {
-        return guards[0].gameObject.transform.position;
+        if (guards.Count != 0)
+        {
+            return guards[0].gameObject.transform.position;
+        }
+
+        return Vector2.zero;
+    }
+
+    public void StunGuard()
+    {
+        guards[0].bb.Set<bool>("Stunned", true);
+        guards[0].TakeDamage(1);
     }
 }
