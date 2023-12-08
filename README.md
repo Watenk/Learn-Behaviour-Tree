@@ -6,7 +6,7 @@
 ## Video
 [![Video](https://img.youtube.com/vi/HTuWaDKuoeY/0.jpg)](https://www.youtube.com/watch?v=HTuWaDKuoeY)  
 
-# Documentation
+## Documentation
 [Link](./Documentation/Documentation.pdf)
 
 ## UML
