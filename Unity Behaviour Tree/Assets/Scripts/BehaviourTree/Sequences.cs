@@ -46,62 +46,8 @@ public class Sequences
         return sequence;
     }
 
-    // Level 2 sequences (A sequence in a sequence using a ConditionNode)
+    // Level 2 sequences (A sequence in a sequence in a sequence (or condition))
     ///////////////////////////////////////////////////////
-    ///
-    public List<ITickable> StealthAttackSequence(Blackboard bb)
-    {
-        Func<GameObject, bool> isAgentAtTree = (body) => Vector2.Distance(body.transform.position, new Vector2(5, 15)) < 0.5;
-
-        List<ITickable> sequence = new List<ITickable>
-        {
-            new RepeatingSequenceNode(bb, new List<ITickable>
-            {
-                new ConditionNode<GameObject>(bb, "Body", isAgentAtTree,
-                    ThrowBombAtGuard(bb),
-                    GoToTree(bb)
-                )
-            })
-        };
-
-        return sequence;
-    }
-
-    public List<ITickable> IsWeaponEquipped(Blackboard bb)
-    {
-        Func<IWeapon, bool> isWeaponEquiped = (weapon) => weapon != null;
-
-        List<ITickable> Sequence = new List<ITickable>
-        {
-            new RepeatingSequenceNode(bb, new List<ITickable>
-            {
-                new ConditionNode<IWeapon>(bb, "EquipedWeapon", isWeaponEquiped, 
-                    AttackPlayer(bb),
-                    GetWeapon(bb)
-                )
-            })
-        };
-
-        return Sequence;
-    }
-
-    public List<ITickable> GetWeapon(Blackboard bb)
-    {
-        Func<IWeapon, bool> isThereAPendingWeapon = (pendingWeapon) => pendingWeapon != null;
-
-        List<ITickable> sequence = new List<ITickable>
-        {
-            new RepeatingSequenceNode(bb, new List<ITickable>
-            {
-                new ConditionNode<IWeapon>(bb, "PendingWeapon", isThereAPendingWeapon,
-                    GetPendingWeapon(bb),
-                    SearchForWeapon(bb)
-                )
-            })
-        };
-
-        return sequence;
-    }
 
     public List<ITickable> AttackPlayer(Blackboard bb)
     {
@@ -122,6 +68,55 @@ public class Sequences
         return sequence;
     }
 
+    // Level 3 sequences (A sequence in a sequence (or condition))
+    /////////////////////////////////////////////////////////////////
+
+    public List<ITickable> GetWeapon(Blackboard bb)
+    {
+        Func<IWeapon, bool> isThereAPendingWeapon = (pendingWeapon) => pendingWeapon != null;
+
+        List<ITickable> sequence = new List<ITickable>
+        {
+            new ConditionNode<IWeapon>(bb, "PendingWeapon", isThereAPendingWeapon,
+                GetPendingWeapon(bb),
+                SearchForWeapon(bb)
+            )
+        };
+
+        return sequence;
+    }
+
+    public List<ITickable> StealthAttackSequence(Blackboard bb)
+    {
+        Func<GameObject, bool> isAgentAtTree = (body) => Vector2.Distance(body.transform.position, new Vector2(5, 15)) < 0.5;
+
+        List<ITickable> sequence = new List<ITickable>
+        {
+            new ConditionNode<GameObject>(bb, "Body", isAgentAtTree,
+                ThrowBombAtGuard(bb),
+                GoToTree(bb)
+            )
+        };
+
+        return sequence;
+    }
+
+    public List<ITickable> IsWeaponEquipped(Blackboard bb)
+    {
+        Func<IWeapon, bool> isWeaponEquiped = (weapon) => weapon != null;
+
+        List<ITickable> Sequence = new List<ITickable>
+        {
+            new ConditionNode<IWeapon>(bb, "EquipedWeapon", isWeaponEquiped,
+                AttackPlayer(bb),
+                GetWeapon(bb)
+            )
+        };
+
+        return Sequence;
+    }
+
+
     public List<ITickable> CheckDistanceToPlayer(Blackboard bb)
     {
         Func<float, bool> agentAttackCondition = (currentDistance) =>
@@ -137,10 +132,6 @@ public class Sequences
 
         return sequence;
     }
-
-
-    // Level 3 sequences (A sequence in a sequence)
-    /////////////////////////////////////////////////////////////////
 
     public List<ITickable> PatrolSequence(Blackboard bb)
     {
